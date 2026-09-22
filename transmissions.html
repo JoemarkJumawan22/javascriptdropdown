@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    /* Hide OS cursor ASAP (runs before paint) */
+    (function () {
+      try {
+        document.documentElement.style.setProperty('cursor', 'none', 'important');
+      } catch (e) {}
+    })();
+  </script>
+  <style id="hide-os-cursor">
+    html, body, *, *::before, *::after,
+    a, a:hover, a:active, a:focus,
+    button, button:hover, .btn, .logo, .nav-links a, .footer a, .project-link {
+      cursor: none !important;
+      cursor: url("images/blank.png") 0 0, none !important;
+    }
+    @media (max-width: 600px) {
+      html, body, *, a, button { cursor: auto !important; }
+    }
+  </style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transmissions | Joemark S. Jumawan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+<style>
+    .inbox-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .inbox-count {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      color: var(--neon-cyan);
+      text-transform: uppercase;
+    }
+    .inbox-actions {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .btn-small {
+      padding: 0.55rem 1.1rem;
+      font-size: 0.8rem;
+      border-radius: 8px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: none;
+      border: 1.5px solid rgba(0, 240, 255, 0.35);
+      background: transparent;
+      color: var(--neon-cyan);
+      transition: all 0.3s var(--transition-smooth);
+    }
+    .btn-small:hover {
+      background: rgba(0, 240, 255, 0.12);
+      box-shadow: var(--glow-cyan);
+      transform: translateY(-2px);
+    }
+    .btn-danger {
+      border-color: rgba(255, 0, 170, 0.4);
+      color: var(--neon-magenta);
+    }
+    .btn-danger:hover {
+      background: rgba(255, 0, 170, 0.12);
+      box-shadow: var(--glow-magenta);
+    }
+    .messages-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .message-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 1.5rem 1.75rem;
+      backdrop-filter: blur(14px);
+      transition: all 0.4s var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .message-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .message-card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-magenta));
+      opacity: 0.7;
+    }
+    .message-card:hover {
+      border-color: rgba(0, 240, 255, 0.35);
+      transform: translateX(6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 0 25px rgba(0, 240, 255, 0.08);
+    }
+    .message-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+    .message-from {
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+    .message-email {
+      font-size: 0.85rem;
+      color: var(--neon-cyan);
+      margin-top: 0.15rem;
+    }
+    .message-time {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+    .message-subject {
+      font-size: 0.9rem;
+      color: var(--neon-magenta);
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.5px;
+    }
+    .message-body {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: var(--bg-card);
+      border: 1px dashed var(--glass-border);
+      border-radius: 20px;
+    }
+    .empty-state .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.4));
+      animation: floatIcon 3s ease-in-out infinite;
+    }
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .empty-state h3 {
+      font-family: var(--font-display);
+      margin-bottom: 0.5rem;
+    }
+    .empty-state p {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <div class="page-transition"></div>
+
+  <div class="bg-grid"></div>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="logo">JOE<span>MARK</span></a>
+    <button class="menu-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li class="dropdown">
+        <button type="button" id="dropdownBtn" class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+          Projects <span class="dropdown-arrow" aria-hidden="true">▾</span>
+        </button>
+        <ul id="dropdownMenu" class="dropdown-menu">
+          <li><a href="shopzilla.html">Shopzilla</a></li>
+          <li><a href="registrack.html">RegisTrack</a></li>
+          <li><a href="work.html">All Projects</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="section" style="padding-top: 8rem;">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Inbox</span>
+          <h2 class="section-title">Transmissions</h2>
+          <p class="section-desc">Messages received from the contact form. Stored locally in this browser.</p>
+        </div>
+
+        <div class="inbox-header reveal">
+          <div class="inbox-count" id="msg-count">0 transmissions</div>
+          <div class="inbox-actions">
+            <a href="contact.html" class="btn btn-secondary">← Back to Contact</a>
+            <button class="btn-small btn-danger" id="clear-all" type="button">Clear All</button>
+          </div>
+        </div>
+
+        <div class="messages-list" id="messages-list">
+          <!-- messages injected by JS -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">"If not YOU, then WHO? If not NOW, then WHEN?"</p>
+    <p class="footer-text">Joemark S. Jumawan · Multimedia Project</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    const STORAGE_KEY = 'joemark_transmissions';
+
+    function loadMessages() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      } catch {
+        return [];
+      }
+    }
+
+    function saveMessages(list) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+    }
+
+    function formatTime(iso) {
+      const d = new Date(iso);
+      return d.toLocaleString(undefined, {
+        year: 'numeric', month: 'short', day: 'numeric',
+        hour: '2-digit', minute: '2-digit'
+      });
+    }
+
+    function render() {
+      const list = loadMessages();
+      const container = document.getElementById('messages-list');
+      const countEl = document.getElementById('msg-count');
+
+      countEl.textContent = list.length === 1
+        ? '1 transmission'
+        : list.length + ' transmissions';
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state reveal visible">
+            <div class="icon">📡</div>
+            <h3>No transmissions yet</h3>
+            <p>When someone sends a message from the Contact page, it will appear here.</p>
+            <a href="contact.html" class="btn btn-primary" style="display:inline-flex;">Go to Contact</a>
+          </div>`;
+        return;
+      }
+
+      const sorted = [...list].reverse();
+      container.innerHTML = sorted.map((m, i) => `
+        <article class="message-card" data-id="${m.id}" style="transition-delay: ${i * 0.08}s">
+          <div class="message-meta">
+            <div>
+              <div class="message-from">${escapeHtml(m.name || 'Anonymous')}</div>
+              <div class="message-email">${escapeHtml(m.email || '—')}</div>
+            </div>
+            <div class="message-time">${formatTime(m.time)}</div>
+          </div>
+          ${m.subject ? `<div class="message-subject">${escapeHtml(m.subject)}</div>` : ''}
+          <div class="message-body">${escapeHtml(m.message || '')}</div>
+        </article>
+      `).join('');
+
+      // trigger reveal
+      requestAnimationFrame(() => {
+        container.querySelectorAll('.message-card').forEach(card => {
+          card.classList.add('visible');
+        });
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    document.getElementById('clear-all').addEventListener('click', () => {
+      if (confirm('Clear all transmissions from this browser?')) {
+        saveMessages([]);
+        render();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>

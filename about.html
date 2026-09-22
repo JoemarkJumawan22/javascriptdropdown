@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    /* Hide OS cursor ASAP (runs before paint) */
+    (function () {
+      try {
+        document.documentElement.style.setProperty('cursor', 'none', 'important');
+      } catch (e) {}
+    })();
+  </script>
+  <style id="hide-os-cursor">
+    html, body, *, *::before, *::after,
+    a, a:hover, a:active, a:focus,
+    button, button:hover, .btn, .logo, .nav-links a, .footer a, .project-link {
+      cursor: none !important;
+      cursor: url("images/blank.png") 0 0, none !important;
+    }
+    @media (max-width: 600px) {
+      html, body, *, a, button { cursor: auto !important; }
+    }
+  </style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Joemark S. Jumawan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <div class="page-transition"></div>
+
+  <div class="bg-grid"></div>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="logo">JOE<span>MARK</span></a>
+    <button class="menu-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li class="dropdown">
+        <button type="button" id="dropdownBtn" class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+          Projects <span class="dropdown-arrow" aria-hidden="true">▾</span>
+        </button>
+        <ul id="dropdownMenu" class="dropdown-menu">
+          <li><a href="shopzilla.html">Shopzilla</a></li>
+          <li><a href="registrack.html">RegisTrack</a></li>
+          <li><a href="work.html">All Projects</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="section" style="padding-top: 8rem;">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Who I Am</span>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-desc">A curious mind navigating the intersection of code, design, and emerging tech.</p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-visual reveal-left">
+            <div class="profile-card">
+              <div class="avatar-ring">
+                <div class="avatar-inner">
+                  <img src="images/siDos_Suit.png" alt="Joemark S. Jumawan" class="avatar-img">
+                </div>
+              </div>
+              <h3 class="profile-name">Joemark S. Jumawan</h3>
+              <p class="profile-role">Computer Science Student</p>
+              <div class="profile-meta">
+                <div class="meta-item">
+                  <div class="meta-icon">📅</div>
+                  <div>
+                    <div style="font-size:0.8rem;color:var(--text-muted)">Age</div>
+                    <div>20 years old</div>
+                  </div>
+                </div>
+                <div class="meta-item">
+                  <div class="meta-icon">🏠</div>
+                  <div>
+                    <div style="font-size:0.8rem;color:var(--text-muted)">Country</div>
+                    <div>Philippines</div>
+                  </div>
+                </div>
+                <div class="meta-item">
+                  <div class="meta-icon">☎️</div>
+                  <div>
+                    <div style="font-size:0.8rem;color:var(--text-muted)">(PH) Phone Number</div>
+                    <div>0956 528 4626</div>
+                  </div>
+                </div>
+                <div class="meta-item">
+                  <div class="meta-icon">🎓</div>
+                  <div>
+                    <div style="font-size:0.8rem;color:var(--text-muted)">Education</div>
+                    <div>3rd Year · Computer Science</div>
+                  </div>
+                </div>
+                <div class="meta-item">
+                  <div class="meta-icon">⚡</div>
+                  <div>
+                    <div style="font-size:0.8rem;color:var(--text-muted)">Focus</div>
+                    <div>Web · Apps · AI Tools</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="about-content reveal-right">
+            <h3>The Story So Far</h3>
+            <p>
+              I'm Joemark — a 20-year-old third-year Computer Science student who treats every project like a playground
+              for ideas.
+              I don't just write code; I design experiences that feel intentional, fluid, and a little bit unexpected.
+            </p>
+            <p>
+              From building full applications like <strong style="color:var(--neon-cyan)">Shopzilla</strong> to crafting
+              web systems such as
+              <strong style="color:var(--neon-magenta)">RegisTrack</strong>, I thrive at the point where clean
+              architecture meets bold visual thinking.
+            </p>
+            <p>
+              Beyond the screen, I actively seek growth through seminars and workshops — constantly updating my digital
+              toolkit with modern communication, safety practices, and AI essentials.
+            </p>
+
+            <div class="skills-grid">
+              <div class="skill-chip">HTML / CSS</div>
+              <div class="skill-chip">JavaScript</div>
+              <div class="skill-chip">UI / UX</div>
+              <div class="skill-chip">Web Apps</div>
+              <div class="skill-chip">Mobile Apps</div>
+              <div class="skill-chip">Problem Solving</div>
+              <div class="skill-chip">AI Tools</div>
+              <div class="skill-chip">Design Systems</div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top: 5rem;">
+          <div class="section-header reveal">
+            <span class="section-tag">Growth Path</span>
+            <h2 class="section-title">Seminars & Learning</h2>
+            <p class="section-desc">I show up where knowledge is shared. Continuous learning is non-negotiable.</p>
+          </div>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-date">Recent</div>
+              <div class="timeline-title">The Modern Digital Toolkit: Communication, Safety, and AI Essentials</div>
+              <div class="timeline-desc">Explored modern communication frameworks, digital safety practices, and
+                practical AI tools that reshape how we build and collaborate.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Ongoing</div>
+              <div class="timeline-title">Multiple Industry Seminars & Workshops</div>
+              <div class="timeline-desc">Actively attending talks and sessions covering software engineering, emerging
+                tech, cybersecurity awareness, and professional development.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Academic Journey</div>
+              <div class="timeline-title">3rd Year Computer Science</div>
+              <div class="timeline-desc">Deepening foundations in algorithms, systems design, software engineering
+                principles, and real-world project development.</div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-date">Self-Driven</div>
+              <div class="timeline-title">Independent Projects & Experiments</div>
+              <div class="timeline-desc">Building personal projects that push both technical skill and creative
+                problem-solving — turning concepts into working applications.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">"If not YOU, then WHO? If not NOW, then WHEN?"</p>
+    <p class="footer-text">Joemark S. Jumawan · Multimedia Project</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

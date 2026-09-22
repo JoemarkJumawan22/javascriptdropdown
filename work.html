@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script>
+    /* Hide OS cursor ASAP (runs before paint) */
+    (function () {
+      try {
+        document.documentElement.style.setProperty('cursor', 'none', 'important');
+      } catch (e) {}
+    })();
+  </script>
+  <style id="hide-os-cursor">
+    html, body, *, *::before, *::after,
+    a, a:hover, a:active, a:focus,
+    button, button:hover, .btn, .logo, .nav-links a, .footer a, .project-link {
+      cursor: none !important;
+      cursor: url("images/blank.png") 0 0, none !important;
+    }
+    @media (max-width: 600px) {
+      html, body, *, a, button { cursor: auto !important; }
+    }
+  </style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Work | Joemark S. Jumawan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <div class="page-transition"></div>
+
+  <div class="bg-grid"></div>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="logo">JOE<span>MARK</span></a>
+    <button class="menu-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html" class="active">Work</a></li>
+      <li class="dropdown">
+        <button type="button" id="dropdownBtn" class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+          Projects <span class="dropdown-arrow" aria-hidden="true">▾</span>
+        </button>
+        <ul id="dropdownMenu" class="dropdown-menu">
+          <li><a href="shopzilla.html">Shopzilla</a></li>
+          <li><a href="registrack.html">RegisTrack</a></li>
+          <li><a href="work.html">All Projects</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="section" style="padding-top: 8rem;">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Selected Works</span>
+          <h2 class="section-title">Projects</h2>
+          <p class="section-desc">A glimpse into the systems and experiences I've built — from concept to working
+            product.</p>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Shopzilla -->
+          <article class="project-card">
+            <div class="project-image">
+              <img class="project-bg" src="images/bg-shopzilla.png" alt="">
+              <div class="project-icon">
+                <img src="images/shopzilla.png" alt="Shopzilla">
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag">Application</span>
+                <span class="tag">Project</span>
+              </div>
+              <h3 class="project-title">Shopzilla</h3>
+              <p class="project-desc">
+                A project application focused on delivering a smooth, modern shopping experience.
+                Designed with clean flows, intuitive navigation, and a user-first mindset to make digital commerce feel
+                effortless.
+              </p>
+              <a href="shopzilla.html" class="project-link">Explore Project →</a>
+            </div>
+          </article>
+
+          <!-- RegisTrack -->
+          <article class="project-card">
+            <div class="project-image">
+              <img class="project-bg" src="images/R-Background.png" alt="">
+              <div class="project-icon">
+                <img src="images/RegisTrack.png" alt="RegisTrack">
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag">Web Project</span>
+                <span class="tag">System</span>
+              </div>
+              <h3 class="project-title">RegisTrack</h3>
+              <p class="project-desc">
+                A web-based registration and tracking system built for clarity and efficiency.
+                Handles data flow, user management, and real-time status updates with a clean, understandable interface.
+              </p>
+              <a href="registrack.html" class="project-link">Explore Project →</a>
+            </div>
+          </article>
+
+          <!-- Future Builds -->
+          <article class="project-card">
+            <div class="project-image">
+              <img class="project-bg" src="images/background.png" alt="">
+              <div class="project-icon">
+                <img src="images/logo.png" alt="Future Builds">
+              </div>
+            </div>
+            <div class="project-body">
+              <div class="project-tags">
+                <span class="tag">In Progress</span>
+                <span class="tag">Experimental</span>
+              </div>
+              <h3 class="project-title">Future Builds</h3>
+              <p class="project-desc">
+                More experiments are brewing — AI-assisted tools, interactive interfaces, and systems that push beyond
+                the ordinary.
+                The next chapter is already being written.
+              </p>
+              <a href="contact.html" class="project-link">Collab With Me →</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">"If not YOU, then WHO? If not NOW, then WHEN?"</p>
+    <p class="footer-text">Joemark S. Jumawan · Multimedia Project</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    /* Hide OS cursor ASAP (runs before paint) */
+    (function () {
+      try {
+        document.documentElement.style.setProperty('cursor', 'none', 'important');
+      } catch (e) {}
+    })();
+  </script>
+  <style id="hide-os-cursor">
+    html, body, *, *::before, *::after,
+    a, a:hover, a:active, a:focus,
+    button, button:hover, .btn, .logo, .nav-links a, .footer a, .project-link {
+      cursor: none !important;
+      cursor: url("images/blank.png") 0 0, none !important;
+    }
+    @media (max-width: 600px) {
+      html, body, *, a, button { cursor: auto !important; }
+    }
+  </style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Joemark S. Jumawan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <div class="page-transition"></div>
+
+  <div class="bg-grid"></div>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="logo">JOE<span>MARK</span></a>
+    <button class="menu-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li class="dropdown">
+        <button type="button" id="dropdownBtn" class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+          Projects <span class="dropdown-arrow" aria-hidden="true">▾</span>
+        </button>
+        <ul id="dropdownMenu" class="dropdown-menu">
+          <li><a href="shopzilla.html">Shopzilla</a></li>
+          <li><a href="registrack.html">RegisTrack</a></li>
+          <li><a href="work.html">All Projects</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="section" style="padding-top: 8rem;">
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-tag">Connect</span>
+          <h2 class="section-title">Get In Touch</h2>
+          <p class="section-desc">Have an idea, a project, or just want to say hello? The signal is open.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <div class="contact-card">
+              <div class="contact-icon">📍</div>
+              <div>
+                <div class="contact-label">Location</div>
+                <div class="contact-value">Philippines</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon">🎓</div>
+              <div>
+                <div class="contact-label">Status</div>
+                <div class="contact-value">3rd Year CS Student</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon">💡</div>
+              <div>
+                <div class="contact-label">Open To</div>
+                <div class="contact-value">Collaborations & Opportunities</div>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-icon">⚡</div>
+              <div>
+                <div class="contact-label">Response</div>
+                <div class="contact-value">Usually within 24–48 hrs</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-form">
+            <form>
+              <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="you@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="What's this about?">
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Tell me about your idea, project, or just say hi..." required></textarea>
+              </div>
+              <button type="submit" class="form-submit">Send Transmission</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">"If not YOU, then WHO? If not NOW, then WHEN?"</p>
+    <p class="footer-text">Joemark S. Jumawan · Multimedia Project</p>
+    <p class="footer-text" style="margin-top:0.75rem;font-size:0.75rem;">
+      <a href="transmissions.html" style="color:var(--neon-cyan);opacity:0.7;">View Transmissions →</a>
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    /* Hide OS cursor ASAP (runs before paint) */
+    (function () {
+      try {
+        document.documentElement.style.setProperty('cursor', 'none', 'important');
+      } catch (e) {}
+    })();
+  </script>
+  <style id="hide-os-cursor">
+    html, body, *, *::before, *::after,
+    a, a:hover, a:active, a:focus,
+    button, button:hover, .btn, .logo, .nav-links a, .footer a, .project-link {
+      cursor: none !important;
+      cursor: url("images/blank.png") 0 0, none !important;
+    }
+    @media (max-width: 600px) {
+      html, body, *, a, button { cursor: auto !important; }
+    }
+  </style>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Joemark S. Jumawan | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="cursor"></div>
+  <div class="cursor-follower"></div>
+  <div class="page-transition"></div>
+
+  <div class="bg-grid"></div>
+  <div class="bg-orbs">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+
+  <nav class="nav">
+    <a href="index.html" class="logo">WEL<span>COME</span></a>
+    <button class="menu-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li class="dropdown">
+        <button type="button" id="dropdownBtn" class="dropdown-btn" aria-haspopup="true" aria-expanded="false">
+          Projects <span class="dropdown-arrow" aria-hidden="true">▾</span>
+        </button>
+        <ul id="dropdownMenu" class="dropdown-menu">
+          <li><a href="shopzilla.html">Shopzilla</a></li>
+          <li><a href="registrack.html">RegisTrack</a></li>
+          <li><a href="work.html">All Projects</a></li>
+        </ul>
+      </li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Available for opportunities
+        </div>
+        <h1>
+          <span class="glitch" data-text="Joemark">Joemark</span><br>
+          <span class="highlight">S. Jumawan</span>
+        </h1>
+        <p class="hero-subtitle">
+          20-year-old 3rd Year Computer Science Student crafting digital experiences that feel alive. 
+          <br><span class="typewriter" style="color: var(--neon-cyan); font-weight: 600;"></span>
+        </p>
+        <div class="hero-cta">
+          <a href="work.html" class="btn btn-primary">
+            View My Work
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="contact.html" class="btn btn-secondary">Get In Touch</a>
+        </div>
+
+        <div class="stats-bar">
+          <div class="stat">
+            <div class="stat-number">2+</div>
+            <div class="stat-label">Major Projects</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">3rd</div>
+            <div class="stat-label">Year CS Student</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">10+</div>
+            <div class="stat-label">Seminars Attended</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number">∞</div>
+            <div class="stat-label">Ideas Brewing</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-text">"If not YOU, then WHO? If not NOW, then WHEN?"</p>
+    <p class="footer-text">Joemark S. Jumawan · Multimedia Project</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
